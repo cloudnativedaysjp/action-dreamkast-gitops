@@ -1,0 +1,37 @@
+name: Action Dreamkast GitOps
+description: CI tool for GitOps
+author: cloudnativedaysjp
+inputs:
+  base_dir:
+    description: repository name that manages manifests
+    required: false
+    default: dreamkast-infra
+  app_template_dir:
+    description: directory path of application manifests' template
+    required: true
+  app_target_dir:
+    description: directory path of application manifests for preview-app
+    required: true
+  argo_template_file:
+    description: file path of argo-cd Application manifest's template
+    required: true
+  argo_target_file:
+    description: file path of argo-cd Application for preview-app
+    required: true
+  image:
+    description: image name & tag of preview-app
+    required: true
+  namespace:
+    description: namespace that preview-app will be deployed
+    required: true
+  replacements:
+    description: 'specify "replaced rule" in comma sparated (format: BEFORE1=AFTER1,BEFORE2=AFTER2)'
+    required: false
+    default: ""
+outputs: {}
+runs:
+  using: docker
+  image: Dockerfile
+branding:
+  icon: paperclip
+  color: blue
