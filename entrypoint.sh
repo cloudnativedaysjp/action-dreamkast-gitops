@@ -11,6 +11,13 @@ IMAGE=${INPUT_IMAGE}
 NAMESPACE=${INPUT_NAMESPACE}
 REPLACEMENTS=${INPUT_REPLACEMENTS}
 
+
+echo "========Initialize=========="
+(
+if [ ! -d $(dirname ${BASE_DIR}/${APP_TARGET_DIR}) ]; then mkdir -p $(dirname ${BASE_DIR}/${APP_TARGET_DIR}); fi
+if [ ! -d $(dirname ${BASE_DIR}/${ARGO_TARGET_FILE}) ]; then mkdir -p $(dirname ${BASE_DIR}/${ARGO_TARGET_FILE}); fi
+)
+
 echo "========Update application manifests=========="
 (
 if [ ! -d ${BASE_DIR}/${APP_TARGET_DIR} ]; then
