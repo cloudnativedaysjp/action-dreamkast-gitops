@@ -20,7 +20,7 @@ if [ ! -d $(dirname ${BASE_DIR}/${ARGO_TARGET_FILE}) ]; then mkdir -p $(dirname 
 
 echo "========Update application manifests=========="
 (
-if [ ! -d ${BASE_DIR}/${APP_TARGET_DIR} ]; then
+if [ -n "$APP_TEMPLATE_DIR" ] && [ ! -d ${BASE_DIR}/${APP_TARGET_DIR} ]; then
   cp -r ${BASE_DIR}/${APP_TEMPLATE_DIR} ${BASE_DIR}/${APP_TARGET_DIR}
 fi
 cd ${BASE_DIR}/${APP_TARGET_DIR}
@@ -38,7 +38,7 @@ cat kustomization.yaml
 
 echo "========Generate ArgoCD app=========="
 (
-if [ ! -f ${BASE_DIR}/${ARGO_TARGET_FILE} ]; then
+if [ -n "$ARGO_TEMPLATE_FILE" ] && [ ! -f ${BASE_DIR}/${ARGO_TARGET_FILE} ]; then
   cp ${BASE_DIR}/${ARGO_TEMPLATE_FILE} ${BASE_DIR}/${ARGO_TARGET_FILE}
 fi
 sed -i -e s/NAMESPACE/${NAMESPACE}/ ${BASE_DIR}/${ARGO_TARGET_FILE}
