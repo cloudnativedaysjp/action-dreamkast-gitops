@@ -8,13 +8,13 @@ inputs:
     default: dreamkast-infra
   app_template_dir:
     description: directory path of application manifests' template
-    required: true
+    required: false
   app_target_dir:
     description: directory path of application manifests for preview-app
     required: true
   argo_template_file:
     description: file path of argo-cd Application manifest's template
-    required: true
+    required: false
   argo_target_file:
     description: file path of argo-cd Application for preview-app
     required: true
